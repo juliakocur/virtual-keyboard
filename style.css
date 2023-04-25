@@ -44,12 +44,14 @@ body {
     align-items: center;
     margin: 4px;
     z-index: 5;
+    font-size: 18px;
 }
 
 .double_key {
     justify-content: flex-start;
     flex-direction: column;
-    padding-top: 5px;
+    padding-top: 3px;
+    font-size: 17px;
 }
 
 .double_key_span {
@@ -65,13 +67,41 @@ body {
     border-radius: 4px;
     border: none;
     outline: none;
-    font-size: 24px;
+    font-size: 26px;
     background-color: #f7f7f7;
     padding-left: 10px;
 }
 
 .backspace_key {
-    width: 120px;
+    width: 142px;
+}
+
+.tab_key {
+    width: 70px;
+}
+
+.del_key {
+    width: 70px;
+}
+
+.caps_lock_key {
+    width: 128px;
+}
+
+.enter_key {
+    width: 128px;
+}
+
+.shift_left {
+    width: 128px;
+}
+
+.ctrl_key {
+    width: 90px;
+}
+
+.space_key {
+    width: 400px;
 }
 
 
