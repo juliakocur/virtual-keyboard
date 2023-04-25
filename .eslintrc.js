@@ -11,5 +11,11 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+'no-restricted-syntax': [
+error,
+FunctionExpression,
+WithStatement,
+BinaryExpression[operator='in']
+]
   },
 };
