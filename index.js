@@ -91,12 +91,13 @@ createBody();
 
 let keys = document.querySelectorAll('.keys');
 let space = document.querySelector('.space_key');
-let shift_left = document.querySelector('.shift_left');
-let shift_right = document.querySelector('.shift_right');
-let caps_lock = document.querySelector('.caps_lock_key');
+let shiftLeft = document.querySelector('.shift_left');
+let shiftRight = document.querySelector('.shift_right');
+let capsLock = document.querySelector('.caps_lock_key');
 let toggle = document.querySelector('.toggle_key');
 let text = document.querySelector('.text');
 let wrapp = document.querySelector('.keyboard_wrapp');
+let tab = document.querySelector('.tab_key');
 
 //add attribute lowerCase for keys
 for (let i=0;i<keys.length;i++) {
@@ -110,6 +111,21 @@ window.addEventListener('keydown', function(e) {
       if(e.key == keys[i].getAttribute('keyname') || e.key == keys[i].getAttribute('lowerCase')) {
         keys[i].classList.add('_active')
       }  
+      if(e.code == 'CapsLock') {
+        capsLock.classList.toggle('_active')
+      }
+      if(e.code == 'ShiftLeft') {
+        shiftRight.classList.remove('_active')
+      } 
+      if(e.code == 'ShiftRight') {
+        shiftLeft.classList.remove('_active')
+      }
+      if(e.code == 'Space') {
+        space.classList.add('_active')
+      }
+      if(e.code == 'Tab') {
+        tab.classList.add('_active')
+      }
     }
 })
 
@@ -118,7 +134,19 @@ window.addEventListener('keyup', function(e) {
     for(let i=0; i<keys.length; i++) {
       if(e.key == keys[i].getAttribute('keyname') || e.key == keys[i].getAttribute('lowerCase')) {
         keys[i].classList.remove('_active');
-        keys[i].classList.add('_remove')
+        keys[i].classList.add('_remove');
       }  
+      if(e.code == 'Space') {
+        space.classList.remove('_active');
+        space.classList.add('_remove');
+      }
+      if(e.code == 'ShiftLeft') {
+        shiftRight.classList.remove('_active');
+        shiftRight.classList.remove('_remove');
+      }
+      if(e.code == 'ShiftRight') {
+        shiftLeft.classList.remove('_active');
+        shiftLeft.classList.remove('_remove');
+      }
     }
 })
