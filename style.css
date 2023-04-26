@@ -70,6 +70,7 @@ body {
     font-size: 26px;
     background-color: #f7f7f7;
     padding-left: 10px;
+    transition: 0.2s;
 }
 
 .backspace_key {
@@ -103,5 +104,26 @@ body {
 .space_key {
     width: 400px;
 }
+
+.keys._active {
+    background-color: rgb(122, 179, 161);
+}
+
+.keys._remove {
+    animation: keys_animation 0.3s linear;
+}
+
+@keyframes keys_animation {
+
+    0% {
+        background-color:  rgb(122, 179, 161);
+    }
+    100% {
+        background-color: #fff;
+    }
+
+}
+
+
 
 
