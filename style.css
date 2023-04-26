@@ -47,6 +47,12 @@ body {
     font-size: 18px;
 }
 
+.keys:hover {
+    background-color: rgb(122, 179, 161);
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
 .double_key {
     justify-content: flex-start;
     flex-direction: column;
@@ -78,11 +84,11 @@ body {
 }
 
 .tab_key {
-    width: 70px;
+    width: 85px;
 }
 
 .del_key {
-    width: 70px;
+    width: 85px;
 }
 
 .caps_lock_key {
