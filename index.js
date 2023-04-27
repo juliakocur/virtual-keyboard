@@ -81,7 +81,7 @@ function createBody() {
                 </div>
             </div>
         </div>
-        <input class="text" type="text">
+        <textarea class="text" type="text"></textarea>
     </div>
 `
 }
@@ -117,6 +117,10 @@ let arrowDown = document.querySelector('.arrow_down');
 let arrowUp = document.querySelector('.arrow_up');
 let arrowLeft = document.querySelector('.arrow_left');
 let arrowRight = document.querySelector('.arrow_right');
+let enter = document.querySelector('.enter_key');
+let ctrlLeft = document.querySelector('.ctrl_left');
+let ctrlRight = document.querySelector('.ctrl_right');
+let win = document.querySelector('.win_key');
 
 //add attribute lowerCase for keys
 for (let i=0;i<keys.length;i++) {
@@ -124,88 +128,117 @@ for (let i=0;i<keys.length;i++) {
     keys[i].setAttribute('lowerCase', keys[i].innerText.toLowerCase());
 }
 
+
 //add class _active for pressed button
 window.addEventListener('keydown', function (e) {
+  text.focus();
+  
     for(let i=0; i<keys.length; i++) {
       if(e.key == keys[i].getAttribute('keyname') || e.key == keys[i].getAttribute('lowerCase')) {
-        keys[i].classList.add('_active')
+        keys[i].classList.add('_active');
       }  
       if(e.code == 'CapsLock') {
-        capsLock.classList.toggle('_active')
+        capsLock.classList.toggle('_active');
+        break;
       }
-      if(e.code == 'ShiftLeft') {
-        shiftRight.classList.remove('_active')
+      if (e.code == 'Enter') {
+        enter.classList.add('_active');
+      }
+      if (e.code == 'Tab') {
+        tab.classList.add('_active');
+        setTimeout(()=> {
+          tab.classList.remove('_active');
+          tab.classList.add('_remove');
+      },200)
+        text.value = text.value + `   `;
+        e.preventDefault();
+        break;
+      }
+      if (e.code == 'ShiftLeft') {
+        shiftRight.classList.remove('_active');
       } 
-      if(e.code == 'ShiftRight') {
+      if (e.code == 'ShiftRight') {
         shiftLeft.classList.remove('_active')
       }
-      if(e.code == 'AltLeft') {
-        altRight.classList.remove('_active')
+      if (e.code == 'AltLeft') {
+        altRight.classList.remove('_active');
       } 
-      if(e.code == 'Space') {
+      if (e.code == 'AltRight') {
+        altLeft.classList.remove('_active')
+      }
+      if (e.code == 'Space') {
         space.classList.add('_active')
       }
-      if(e.code == 'Digit1') {
+      if (e.code == 'Digit1') {
         one.classList.add('_active')
       }
       if(e.code == 'Digit2') {
         two.classList.add('_active')
       }
-      if(e.code == 'Digit3') {
+      if (e.code == 'Digit3') {
         three.classList.add('_active')
       }
-      if(e.code == 'Digit4') {
+      if (e.code == 'Digit4') {
         four.classList.add('_active')
       }
-      if(e.code == 'Digit5') {
+      if (e.code == 'Digit5') {
         five.classList.add('_active')
       }
-      if(e.code == 'Digit6') {
+      if (e.code == 'Digit6') {
         six.classList.add('_active')
       }
-      if(e.code == 'Digit7') {
+      if (e.code == 'Digit7') {
         seven.classList.add('_active')
       }
-      if(e.code == 'Digit8') {
+      if (e.code == 'Digit8') {
         eight.classList.add('_active')
       }
-      if(e.code == 'Digit9') {
+      if (e.code == 'Digit9') {
         nine.classList.add('_active')
       }
-      if(e.code == 'Digit0') {
+      if (e.code == 'Digit0') {
         zero.classList.add('_active')
       }
-      if(e.code == 'Backquote') {
+      if (e.code == 'Backquote') {
         backQuote.classList.add('_active')
       }
-      if(e.code == 'Equal') {
+      if (e.code == 'Equal') {
         equal.classList.add('_active')
       }
-      if(e.code == 'Minus') {
+      if (e.code == 'Minus') {
         minus.classList.add('_active')
       }
-      if(e.code == 'Delete') {
+      if (e.code == 'ControlLeft') {
+        ctrlLeft.classList.add('_active')
+      }
+      if (e.code == 'ControlRight') {
+        ctrlRight.classList.add('_active')
+      }
+      if (e.code == 'MetaLeft') {
+        win.classList.add('_active')
+      }
+      if (e.code == 'Delete') {
         del.classList.add('_active');
         let c = text.value.slice(0, -1); 
         text.value = c;
         break;
       }
-      if(e.code == 'ArrowUp') {
+      if (e.code == 'ArrowUp') {
         let arrowText = arrowUp.textContent;
         text.value = text.value + arrowText;
         break;
       }
-      if(e.code == 'ArrowDown') {
+      if (e.code == 'ArrowDown') {
         let arrowText = arrowDown.textContent;
         text.value = text.value + arrowText;
         break;
       }
-      if(e.code == 'ArrowLeft') {
+      if (e.code == 'ArrowLeft') {
         let arrowText = arrowLeft.textContent;
         text.value = text.value + arrowText;
         break;
       }
-      if(e.code == 'ArrowRight') {
+      if (e.code == 'ArrowRight') {
         let arrowText = arrowRight.textContent;
         text.value = text.value + arrowText;
         break;
@@ -217,91 +250,128 @@ window.addEventListener('keydown', function (e) {
 
 //remove class _active for pressed button
 window.addEventListener('keyup', function (e) {
+  text.focus();
     for(let i=0; i<keys.length; i++) {
-      if(e.key == keys[i].getAttribute('keyname') || e.key == keys[i].getAttribute('lowerCase')) {
+      if (e.key == keys[i].getAttribute('keyname') || e.key == keys[i].getAttribute('lowerCase')) {
         keys[i].classList.remove('_active');
         keys[i].classList.add('_remove');
-      }  
-      if(e.code == 'Space') {
+        setTimeout(()=> {
+          keys[i].classList.remove('_remove');
+      },200)
+      } 
+      if (e.code == 'Space') {
         space.classList.remove('_active');
         space.classList.add('_remove');
       }
-      if(e.code == 'ShiftLeft') {
+      if (e.code == 'Enter') {
+        enter.classList.remove('_active');
+        enter.classList.add('_remove');
+      }
+      if (e.code == 'ShiftLeft') {
         shiftRight.classList.remove('_active');
         shiftRight.classList.remove('_remove');
       }
-      if(e.code == 'ShiftRight') {
+      if (e.code == 'ShiftRight') {
         shiftLeft.classList.remove('_active');
         shiftLeft.classList.remove('_remove');
       }
-      if(e.code == 'AltLeft') {
+      if (e.code == 'AltLeft') {
         altRight.classList.remove('_active');
         altRight.classList.remove('_remove');
+        e.preventDefault();
       }
-      if(e.code == 'Digit1') {
+      if (e.code == 'AltRight') {
+        altLeft.classList.remove('_active');
+        altLeft.classList.remove('_remove');
+        e.preventDefault();
+      }
+      if (e.code == 'Digit1') {
         one.classList.remove('_active');
         one.classList.add('_remove');
       }
-      if(e.code == 'Digit2') {
+      if (e.code == 'Digit2') {
         two.classList.remove('_active');
         two.classList.add('_remove')
       }
-      if(e.code == 'Digit3') {
+      if (e.code == 'Digit3') {
         three.classList.remove('_active');
         three.classList.add('_remove')
       }
-      if(e.code == 'Digit4') {
+      if (e.code == 'Digit4') {
         four.classList.remove('_active');
         four.classList.add('_remove');
       }
-      if(e.code == 'Digit5') {
+      if (e.code == 'Digit5') {
         five.classList.remove('_active');
         five.classList.add('_remove');
       }
-      if(e.code == 'Digit6') {
+      if (e.code == 'Digit6') {
         six.classList.remove('_active');
         five.classList.add('_remove');
       }
-      if(e.code == 'Digit7') {
+      if (e.code == 'Digit7') {
         seven.classList.remove('_active');
         seven.classList.add('_remove');
       }
-      if(e.code == 'Digit8') {
+      if (e.code == 'Digit8') {
         eight.classList.remove('_active');
         eight.classList.add('_remove')
       }
-      if(e.code == 'Digit9') {
+      if (e.code == 'Digit9') {
         nine.classList.remove('_active');
         nine.classList.add('_remove')
       }
-      if(e.code == 'Digit0') {
+      if (e.code == 'Digit0') {
         zero.classList.remove('_active');
         zero.classList.add('_remove');
       }
-      if(e.code == 'Backquote') {
+      if (e.code == 'Backquote') {
         backQuote.classList.remove('_active');
         backQuote.classList.add('_remove');
       }
-      if(e.code == 'Equal') {
+      if (e.code == 'Equal') {
         equal.classList.remove('_active');
         equal.classList.add('_remove');
       }
-      if(e.code == 'Minus') {
+      if (e.code == 'Minus') {
         minus.classList.remove('_active');
         minus.classList.add('_remove');
       }
-      if(e.code == 'Delete') {
+      if (e.code == 'Delete') {
         del.classList.remove('_active');
         del.classList.add('_remove');
+      }
+      if (e.code == 'ControlLeft') {
+        ctrlLeft.classList.remove('_active');
+        ctrlLeft.classList.add('_remove');
+      }
+      if (e.code == 'ControlRight') {
+        ctrlRight.classList.remove('_active');
+        ctrlRight.classList.add('_remove');
+      }
+      if (e.code == 'MetaLeft') {
+        win.classList.remove('_active');
+        win.classList.add('_remove');
       }
     }
 })
 
 wrapp.addEventListener('click', function(e) {
-
-  if(e.target.textContent == 'Backspace' || e.target.textContent == 'DEL' ) {
+  text.focus();
+  if (e.target.textContent == 'Backspace' || e.target.textContent == 'DEL' ) {
     text.value = text.value.slice(0, -1);
   } 
+  else if (e.target.textContent == 'Ctrl' || e.target.textContent == 'Alt' || e.target.textContent == 'Win') {
+  }
+  else if (e.target.textContent == 'Tab') {
+    text.value = text.value+'    ';
+  }
+  else if (e.target.textContent == 'ENTER') {
+    text.value = text.value+'\n';
+  }
+  else if (e.target.textContent == '') {
+    text.value = text.value+' ';
+  }
   else if (e.target.textContent == '!1') {
     text.value = text.value+1;
   }
@@ -335,14 +405,54 @@ wrapp.addEventListener('click', function(e) {
   else if (e.target.textContent == '~`') {
     text.value = text.value+'`';
   }
-  else if(e.target.className == 'row'){
+  else if (e.target.textContent == '_-') {
+    text.value = text.value+'-';
+  }
+  else if (e.target.textContent == '+=') {
+    text.value = text.value+'=';
+  }
+  else if (e.target.className == 'row'){
     console.log(e.target)
   }
-  else if(e.target.className == 'double_key_span') {
+  else if (e.target.className == 'keys shift_key shift_left'|| e.target.className == 'keys shift_key shift_left _remove') {
+    shiftLeft.classList.add('_active');
+    shiftLeft.classList.remove('_remove');
+  }
+  else if (e.target.className == 'keys shift_key shift_left _active') {
+    shiftLeft.classList.remove('_active');
+    shiftLeft.classList.add('_remove');
+  }
+  else if (e.target.className == 'keys shift_key shift_right'|| e.target.className == 'keys shift_key shift_right _remove') {
+    shiftRight.classList.add('_active');
+    shiftRight.classList.remove('_remove');
+  }
+  else if (e.target.className == 'keys shift_key shift_right _active') {
+    shiftRight.classList.remove('_active');
+    shiftRight.classList.add('_remove');
+  }
+  else if (shiftRight.className == 'keys shift_key shift_right _active') {
+    text.value = text.value+e.target.textContent.toUpperCase();
+  }
+  else if (shiftLeft.className == 'keys shift_key shift_left _active') {
+    text.value = text.value+e.target.textContent.toUpperCase();
+  }
+  else if (e.target.className == 'keys caps_lock_key'||e.target.className == 'keys caps_lock_key _remove'){
+    capsLock.classList.add('_active');
+    capsLock.classList.remove('_remove');
+  }
+  else if (e.target.className == 'keys caps_lock_key _active') {
+    capsLock.classList.remove('_active');
+    capsLock.classList.add('_remove');
+  }
+  else if (capsLock.className == 'keys caps_lock_key _active') {
+    text.value = text.value+e.target.textContent.toUpperCase();
+  }
+
+  else if (e.target.className == 'double_key_span') {
     console.log(e.target)
   } else {
     text.value = text.value+e.target.textContent.toLowerCase();
-    console.log(e.target)
+    console.log('не работает')
 }
 })
 
