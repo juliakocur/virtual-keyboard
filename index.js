@@ -82,6 +82,7 @@ function createBody() {
             </div>
         </div>
         <textarea class="text" type="text"></textarea>
+        <p class="information">Клавиатура выполнена в ОС Windows<br>смена языка не реализована</p>
     </div>
 `
 }
@@ -224,21 +225,29 @@ window.addEventListener('keydown', function (e) {
         break;
       }
       if (e.code == 'ArrowUp') {
+        e.preventDefault();
+        arrowUp.classList.add('_active');
         let arrowText = arrowUp.textContent;
         text.value = text.value + arrowText;
         break;
       }
       if (e.code == 'ArrowDown') {
+        e.preventDefault();
+        arrowDown.classList.add('_active');
         let arrowText = arrowDown.textContent;
         text.value = text.value + arrowText;
         break;
       }
       if (e.code == 'ArrowLeft') {
+        e.preventDefault();
+        arrowLeft.classList.add('_active');
         let arrowText = arrowLeft.textContent;
         text.value = text.value + arrowText;
         break;
       }
       if (e.code == 'ArrowRight') {
+        e.preventDefault();
+        arrowRight.classList.add('_active');
         let arrowText = arrowRight.textContent;
         text.value = text.value + arrowText;
         break;
@@ -352,6 +361,22 @@ window.addEventListener('keyup', function (e) {
       if (e.code == 'MetaLeft') {
         win.classList.remove('_active');
         win.classList.add('_remove');
+      }
+      if (e.code == 'ArrowLeft') {
+        arrowLeft.classList.remove('_active');
+        arrowLeft.classList.add('_remove');
+      }
+      if (e.code == 'ArrowRight') {
+        arrowRight.classList.remove('_active');
+        arrowRight.classList.add('_remove');
+      }
+      if (e.code == 'ArrowUp') {
+        arrowUp.classList.remove('_active');
+        arrowUp.classList.add('_remove');
+      }
+      if (e.code == 'ArrowDown') {
+        arrowDown.classList.remove('_active');
+        arrowDown.classList.add('_remove');
       }
     }
 })
