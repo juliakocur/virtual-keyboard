@@ -89,39 +89,39 @@ function createBody() {
 
 createBody();
 
-let keys = document.querySelectorAll('.keys');
-let space = document.querySelector('.space_key');
-let shiftLeft = document.querySelector('.shift_left');
-let shiftRight = document.querySelector('.shift_right');
-let capsLock = document.querySelector('.caps_lock_key');
-let toggle = document.querySelector('.toggle_key');
-let text = document.querySelector('.text');
-let wrapp = document.querySelector('.keyboard_wrapp');
-let tab = document.querySelector('.tab_key');
-let one = document.querySelector('.one');
-let two = document.querySelector('.two');
-let three = document.querySelector('.three');
-let four = document.querySelector('.four');
-let five = document.querySelector('.five');
-let six = document.querySelector('.six');
-let seven = document.querySelector('.seven');
-let eight = document.querySelector('.eight');
-let nine = document.querySelector('.nine');
-let zero = document.querySelector('.zero');
-let backQuote = document.querySelector('.back_quote');
-let equal = document.querySelector('.equal');
-let minus = document.querySelector('.minus');
-let altLeft = document.querySelector('.alt_left');
-let altRight = document.querySelector('.alt_right');
-let del = document.querySelector('.del_key');
-let arrowDown = document.querySelector('.arrow_down');
-let arrowUp = document.querySelector('.arrow_up');
-let arrowLeft = document.querySelector('.arrow_left');
-let arrowRight = document.querySelector('.arrow_right');
-let enter = document.querySelector('.enter_key');
-let ctrlLeft = document.querySelector('.ctrl_left');
-let ctrlRight = document.querySelector('.ctrl_right');
-let win = document.querySelector('.win_key');
+const keys = document.querySelectorAll('.keys');
+const space = document.querySelector('.space_key');
+const shiftLeft = document.querySelector('.shift_left');
+const shiftRight = document.querySelector('.shift_right');
+const capsLock = document.querySelector('.caps_lock_key');
+const toggle = document.querySelector('.toggle_key');
+const text = document.querySelector('.text');
+const wrapp = document.querySelector('.keyboard_wrapp');
+const tab = document.querySelector('.tab_key');
+const one = document.querySelector('.one');
+const two = document.querySelector('.two');
+const three = document.querySelector('.three');
+const four = document.querySelector('.four');
+const five = document.querySelector('.five');
+const six = document.querySelector('.six');
+const seven = document.querySelector('.seven');
+const eight = document.querySelector('.eight');
+const nine = document.querySelector('.nine');
+const zero = document.querySelector('.zero');
+const backQuote = document.querySelector('.back_quote');
+const equal = document.querySelector('.equal');
+const minus = document.querySelector('.minus');
+const altLeft = document.querySelector('.alt_left');
+const altRight = document.querySelector('.alt_right');
+const del = document.querySelector('.del_key');
+const arrowDown = document.querySelector('.arrow_down');
+const arrowUp = document.querySelector('.arrow_up');
+const arrowLeft = document.querySelector('.arrow_left');
+const arrowRight = document.querySelector('.arrow_right');
+const enter = document.querySelector('.enter_key');
+const ctrlLeft = document.querySelector('.ctrl_left');
+const ctrlRight = document.querySelector('.ctrl_right');
+const win = document.querySelector('.win_key');
 
 //add attribute lowerCase for keys
 for (let i=0;i<keys.length;i++) {
@@ -131,7 +131,7 @@ for (let i=0;i<keys.length;i++) {
 
 
 //add class _active for pressed button
-window.addEventListener('keydown', function (e) {
+window.addEventListener('keydown',  (e) => {
   text.focus();
   
     for(let i=0; i<keys.length; i++) {
@@ -147,7 +147,7 @@ window.addEventListener('keydown', function (e) {
       }
       if (e.code == 'Tab') {
         tab.classList.add('_active');
-        setTimeout(()=> {
+        setTimeout(() => {
           tab.classList.remove('_active');
           tab.classList.add('_remove');
       },200)
@@ -258,13 +258,13 @@ window.addEventListener('keydown', function (e) {
 
 
 //remove class _active for pressed button
-window.addEventListener('keyup', function (e) {
+window.addEventListener('keyup', (e) => {
   text.focus();
     for(let i=0; i<keys.length; i++) {
       if (e.key == keys[i].getAttribute('keyname') || e.key == keys[i].getAttribute('lowerCase')) {
         keys[i].classList.remove('_active');
         keys[i].classList.add('_remove');
-        setTimeout(()=> {
+        setTimeout(() => {
           keys[i].classList.remove('_remove');
       },200)
       } 
@@ -381,7 +381,7 @@ window.addEventListener('keyup', function (e) {
     }
 })
 
-wrapp.addEventListener('click', function(e) {
+wrapp.addEventListener('click', (e) => {
   text.focus();
   if (e.target.textContent == 'Backspace' || e.target.textContent == 'DEL' ) {
     text.value = text.value.slice(0, -1);
@@ -477,7 +477,6 @@ wrapp.addEventListener('click', function(e) {
     console.log(e.target)
   } else {
     text.value = text.value+e.target.textContent.toLowerCase();
-    console.log('не работает')
 }
 })
 
